@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduate.mapper.JobLevelMapper">
+    <select id="getJobLevelByName" parameterType="string" resultType="com.graduate.bean.JobLevelBean">
+        select * from joblevel WHERE "name"=#{name}
+    </select>
+    <insert id="addJobLevel" parameterType="com.graduate.bean.JobLevelBean">
+        UPSERT INTO joblevel("id","name","titleLevel","createDate","enabled")values (NEXT VALUE FOR jobLevel_sequence,#{jobLevel.name},#{jobLevel.titleLevel},#{jobLevel.createDate},true )
+    </insert>
+    <select id="getAllJobLevels" resultType="com.graduate.bean.JobLevelBean">
+        select * from joblevel WHERE "enabled"=true
+    </select>
+    <delete id="deleteJobLevelById">
+        DELETE FROM joblevel WHERE "id" IN
+        <foreach collection="ids" item="id" close=")" open="(" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateJobLevel" keyProperty="id">
+        UPSERT into joblevel(<include refid="key"/>)
+        values(<include refid="values"/>)
+    </update>
+    <sql id="key">
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                "id",
+            </if>
+            <if test="name != null">
+                "name",
+            </if>
+            <if test="titleLevel != null">
+                "titleLevel",
+            </if>
+            <if test="createDate !=null">
+                "createDate",
+            </if>
+            <if test="enabled !=null">
+                "enabled",
+            </if>
+        </trim>
+    </sql>
+    <sql id="values">
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="titleLevel != null">
+                #{titleLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate !=null">
+                #{createDate,jdbcType=DATE},
+            </if>
+            <if test="enabled !=null">
+                #{enabled,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+    </sql>
+</mapper>

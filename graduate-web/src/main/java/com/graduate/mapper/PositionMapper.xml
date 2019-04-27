@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduate.mapper.PositionMapper">
+    <insert id="addPos" parameterType="com.graduate.bean.PositionBean">
+        UPSERT INTO POSITION ("id","name","createDate","enabled")VALUES(NEXT VALUE FOR pos_sequence,#{pos.name},#{pos.createDate},true)
+    </insert>
+    <select id="getPosByName" resultType="com.graduate.bean.PositionBean">
+        SELECT * FROM position WHERE "name"=#{name}
+    </select>
+    <select id="getAllPos" resultType="com.graduate.bean.PositionBean">
+        SELECT * FROM position WHERE "enabled"=true ORDER BY "id"
+    </select>
+    <delete id="deletePosById">
+        DELETE FROM position WHERE "id" IN
+        <foreach collection="pids" item="pid" separator="," open="(" close=")">
+            #{pid}
+        </foreach>
+    </delete>
+    <update id="updatePosById" keyProperty="id">
+        UPSERT into position(<include refid="key"/>)
+        values(<include refid="values"/>)
+    </update>
+    <sql id="key">
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                "id",
+            </if>
+            <if test="name != null">
+                "name",
+            </if>
+            <if test="createDate !=null">
+                "createDate",
+            </if>
+            <if test="enabled !=null">
+                "enabled",
+            </if>
+        </trim>
+    </sql>
+    <sql id="values">
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate !=null">
+                #{createDate,jdbcType=DATE},
+            </if>
+            <if test="enabled !=null">
+                #{enabled,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+    </sql>
+</mapper>

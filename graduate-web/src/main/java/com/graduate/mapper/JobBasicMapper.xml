@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+******************************************************************************
+* 数据库表：job_basic
+* 表的名称：
+* 对应实体：com.graduate.mapper.JobBasicMapper
+* 开发日期：2019-02-21
+* 技术服务：www.fwjava.org
+******************************************************************************
+-->
+<mapper namespace="com.graduate.mapper.JobBasicMapper">
+
+
+    <resultMap id="BaseResultMap" type="com.graduate.bean.JobBasicBean">
+        <id column="id" property="id"/>
+        <result column="did" property="did"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <result column="gender" property="gender"/>
+        <result column="phone" property="phone"/>
+        <result column="spare_phone" property="sparePhone"/>
+        <result column="interview_date" property="interviewDate"/>
+        <association property="departmentBean" javaType="com.graduate.bean.DepartmentBean">
+            <result property="id" column="id"/>
+            <result property="name" column="dname"/>
+        </association>
+    </resultMap>
+    <select id="getJobBasicByPage" resultMap="BaseResultMap">
+        SELECT d.name AS dname, j.id, j.name, j.age, j.gender
+        , j.phone, j.spare_phone, j.interview_date
+        FROM department d, job_basic j
+        WHERE (j.did = d.id
+        AND j.name LIKE COMMENT('%', #{keywords}, '%'))
+        <if test="did!=null and did!=''">
+            AND j.did=#{did}
+        </if>
+        <if test="start!=null and size!=null">
+            order by e.id limit #{start},#{size}
+        </if>
+    </select>
+    <!--
+    **************************************************************************
+    * 1.查看应聘个人基本信息
+    * 注: 根据Bean实体执行新增操作.
+    **************************************************************************
+    -->
+    <select id="getJobBasicByPageShort" resultMap="BaseResultMap">
+            SELECT j.*,d."id" as "did",d."name" AS "dname"
+            FROM job_basic j,department d WHERE j."did"=d."id" ORDER BY j."id" limit #{size} offset#{start}
+    </select>
+
+
+    <!--
+    **************************************************************************
+    * 2.删除数据
+    * 注: 根据Bean实体的主键ID执行删除操作.
+    **************************************************************************
+    -->
+
+    <delete id="deleteJobBasicById">
+        DELETE FROM job_basic WHERE "id" IN
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id,jdbcType=INTEGER}
+        </foreach>
+    </delete>
+    <insert id="getInsert">
+      UPSERT INTO job_basic( "id","did","name","age","gender","phone","spare_phone","interview_date") VALUES (NEXT VALUE FOR job_basic_sequence,#{did},#{name},#{age},#{gender},#{phone},#{sparePhone},#{interviewDate})
+    </insert>
+
+    <!--
+    **************************************************************************
+    * 3.变更数据
+    * 注: 根据Bean实体的主键ID执行变更操作.
+    **************************************************************************
+    -->
+    <sql id="key">
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                "id",
+            </if>
+            <if test="did != null">
+                "did",
+            </if>
+            <if test="name != null">
+                "name",
+            </if>
+            <if test="age !=null">
+                "age",
+            </if>
+            <if test="gender !=null">
+                "gender",
+            </if>
+            <if test="phone !=null">
+                "phone",
+            </if>
+            <if test="sparePhone !=null">
+                "spare_phone",
+            </if>
+            <if test="interviewDate !=null">
+                "interview_date",
+            </if>
+        </trim>
+    </sql>
+    <sql id="values">
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="did != null">
+                #{did,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="age !=null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="gender !=null">
+                #{gender,jdbcType=CHAR},
+            </if>
+            <if test="phone !=null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="sparePhone !=null">
+                #{sparePhone,jdbcType=VARCHAR} ,
+            </if>
+            <if test="interviewDate !=null">
+                #{interviewDate,jdbcType=DATE},
+            </if>
+        </trim>
+    </sql>
+    <update id="updateJobBasic" keyProperty="id">
+        UPSERT into job_basic(<include refid="key"/>)
+        values(<include refid="values"/>)
+    </update>
+
+</mapper>

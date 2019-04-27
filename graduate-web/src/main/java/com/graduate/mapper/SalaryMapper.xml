@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduate.mapper.SalaryMapper">
+    <insert id="addSalary" parameterType="com.graduate.bean.SalaryBean">
+            upsert into salary ("id","bonus", "lunchSalary",
+      "trafficSalary", "basicSalary",
+      "pensionBase", "pensionPer", "createDate",
+      "medicalBase", "medicalPer", "accumulationFundBase",
+      "accumulationFundPer", "name")
+    values (
+      NEXT VALUE FOR salary_sequence,
+      #{salary.bonus,jdbcType=INTEGER}, #{salary.lunchSalary,jdbcType=INTEGER},
+      #{salary.trafficSalary,jdbcType=INTEGER}, #{salary.basicSalary,jdbcType=INTEGER},
+      #{salary.pensionBase,jdbcType=INTEGER}, #{salary.pensionPer,jdbcType=REAL}, #{salary.createDate,jdbcType=TIMESTAMP},
+      #{salary.medicalBase,jdbcType=INTEGER}, #{salary.medicalPer,jdbcType=REAL}, #{salary.accumulationFundBase,jdbcType=INTEGER},
+      #{salary.accumulationFundPer,jdbcType=REAL}, #{salary.name,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="getCountEmpSal" resultType="com.graduate.bean.SalaryBean">
+        SELECT count(*) FROM  empsalary,employee,salary where empsalary."eid"=employee."id" and empsalary."sid"=salary."id"
+    </select>
+    <select id="getAllSalary" resultType="com.graduate.bean.SalaryBean">
+        SELECT * FROM  salary
+    </select>
+    <select id="getSidAndEid" resultType="com.graduate.bean.EmpSalaryBean">
+        SELECT * FROM  empsalary where "sid"=#{sid} and "eid"=#{eid}
+    </select>
+    <update id="updateSalary" parameterType="com.graduate.bean.SalaryBean">
+        UPSERT into salary(<include refid="key"/>)
+        values(<include refid="values"/>)
+    </update>
+    <sql id="key">
+        <trim suffixOverrides=",">
+            <if test="salary.id != null">
+                "id",
+            </if>
+            <if test="salary.bonus != null">
+                "bonus",
+            </if>
+            <if test="salary.lunchSalary != null">
+                "lunchSalary" ,
+            </if>
+            <if test="salary.trafficSalary != null">
+                "trafficSalary",
+            </if>
+            <if test="salary.basicSalary != null">
+                "basicSalary",
+            </if>
+            <if test="salary.allSalary != null">
+                "allSalary",
+            </if>
+            <if test="salary.pensionBase != null">
+                "pensionBase",
+            </if>
+            <if test="salary.pensionPer != null">
+                "pensionPer",
+            </if>
+            <if test="salary.createDate != null">
+                "createDate",
+            </if>
+            <if test="salary.medicalBase != null">
+                "medicalBase",
+            </if>
+            <if test="salary.medicalPer != null">
+                "medicalPer",
+            </if>
+            <if test="salary.accumulationFundBase != null">
+                "accumulationFundBase",
+            </if>
+            <if test="salary.accumulationFundPer != null">
+                "accumulationFundPer",
+            </if>
+            <if test="salary.name != null">
+                "name",
+            </if>
+        </trim>
+    </sql>
+    <sql id="values">
+        <trim suffixOverrides=",">
+            <if test="salary.id != null">
+                #{salary.id,jdbcType=INTEGER},
+            </if>
+            <if test="salary.bonus != null">
+                #{salary.bonus,jdbcType=INTEGER},
+            </if>
+            <if test="salary.lunchSalary != null">
+                #{salary.lunchSalary,jdbcType=INTEGER},
+            </if>
+            <if test="salary.trafficSalary != null">
+                #{salary.trafficSalary,jdbcType=INTEGER},
+            </if>
+            <if test="salary.basicSalary != null">
+                #{salary.basicSalary,jdbcType=INTEGER},
+            </if>
+            <if test="salary.allSalary != null">
+                #{salary.allSalary,jdbcType=INTEGER},
+            </if>
+            <if test="salary.pensionBase != null">
+                #{salary.pensionBase,jdbcType=INTEGER},
+            </if>
+            <if test="salary.pensionPer != null">
+                #{salary.pensionPer,jdbcType=REAL},
+            </if>
+            <if test="salary.createDate != null">
+                #{salary.createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="salary.medicalBase != null">
+                #{salary.medicalBase,jdbcType=INTEGER},
+            </if>
+            <if test="salary.medicalPer != null">
+                #{salary.medicalPer,jdbcType=REAL},
+            </if>
+            <if test="salary.accumulationFundBase != null">
+                #{salary.accumulationFundBase,jdbcType=INTEGER},
+            </if>
+            <if test="salary.accumulationFundPer != null">
+                #{salary.accumulationFundPer,jdbcType=REAL},
+            </if>
+            <if test="salary.name != null">
+                #{salary.name,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </sql>
+    <delete id="deleteSalary">
+        DELETE FROM salary WHERE "id" IN
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="deleteEmpSalary">
+        DELETE FROM empsalary WHERE "eid" IN
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="deleteSalaryByEid">
+        DELETE FROM empsalary WHERE "eid"=#{eid}
+    </delete>
+    <update id="addSidAndEid" >
+        UPSERT into empsalary(
+        "id","eid","sid"
+        )
+        values(NEXT VALUE FOR empsalary_sequence,#{eid},#{sid})
+    </update>
+</mapper>

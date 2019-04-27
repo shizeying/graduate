@@ -1,0 +1,5983 @@
+= 标题：四川大学锦城学院用户信息管理系统_接口文档
+
+
+[[_overview]]
+== Overview
+描述：用于的人员信息
+
+
+=== Version information
+[%hardbreaks]
+__Version__ : 版本号:1.0
+
+
+=== Contact information
+[%hardbreaks]
+__Contact__ : 史泽颖
+__Contact Email__ : w741069229@163.com
+
+
+=== URI scheme
+[%hardbreaks]
+__Host__ : localhost:8080
+__BasePath__ : /
+
+
+=== Tags
+
+* 个人工资表 : Salary Search Controller
+* 人员控制器 : Personnel Controller
+* 员工个人信息 : Emp Basic Controller
+* 员工账套 : Salary Emp Controller
+* 基本信息设置 : System Basic Controller
+* 工资账套配置 : Salary Controller
+* 应聘个人信息 : Info Table Controller
+* 招聘信息 : Job Info Controller
+* 操作员管理 : System Hr Controller
+* 登陆 : Employee Controller
+* 登陆信息 : Reg Login Controller
+* 获取登陆信息 : Config Controller
+* 部门 : Salary Table Controller
+
+
+
+
+[[_paths]]
+== Resources
+
+[[_29e6ed7a6b47d0cbe62082ac5355a35d]]
+=== 个人工资表
+Salary Search Controller
+
+
+[[_deletesalaryusingdelete_1]]
+==== deleteSalary
+....
+DELETE /salary/search/delete/{ids}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**ids** +
+__required__|ids|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getemployeebypageshortusingget_2]]
+==== getEmployeeByPageShort
+....
+GET /salary/search/empSalPage
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+|===
+|Type|Name|Description|Schema|Default
+|**Query**|**page** +
+__optional__|page|integer (int32)|`1`
+|**Query**|**size** +
+__optional__|size|integer (int32)|`10`
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|object
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getworkidsalusingget]]
+==== getWorkIDSal
+....
+GET /salary/search/getSal
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**workID** +
+__optional__|workID|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_employeebean,EmployeeBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_insertempsalaryusingput]]
+==== insertEmpSalary
+....
+PUT /salary/search/insertEmpSalary
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**eid** +
+__optional__|eid|integer (int64)
+|**Query**|**sid** +
+__optional__|sid|integer (int32)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_salariesusingget_2]]
+==== salaries
+....
+GET /salary/search/salary
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_salarybean,SalaryBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_selectworkidusingget]]
+==== selectWorkID
+....
+GET /salary/search/select
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**workID** +
+__optional__|workID|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_employeebean,EmployeeBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_4fcf6a05c68f7236399a4d193443dfec]]
+=== 人员控制器
+Personnel Controller
+
+
+[[_hellousingpost_1]]
+==== hello
+....
+POST /personnel/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hellousingget_1]]
+==== hello
+....
+GET /personnel/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hellousingput_1]]
+==== hello
+....
+PUT /personnel/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hellousingdelete_1]]
+==== hello
+....
+DELETE /personnel/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hellousingpatch_1]]
+==== hello
+....
+PATCH /personnel/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hellousinghead_1]]
+==== hello
+....
+HEAD /personnel/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hellousingoptions_1]]
+==== hello
+....
+OPTIONS /personnel/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_helloempusingpost]]
+==== helloEmp
+....
+POST /personnel/emp/hello
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_helloempusingget]]
+==== helloEmp
+....
+GET /personnel/emp/hello
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_helloempusingput]]
+==== helloEmp
+....
+PUT /personnel/emp/hello
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_helloempusingdelete]]
+==== helloEmp
+....
+DELETE /personnel/emp/hello
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_helloempusingpatch]]
+==== helloEmp
+....
+PATCH /personnel/emp/hello
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_helloempusinghead]]
+==== helloEmp
+....
+HEAD /personnel/emp/hello
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_helloempusingoptions]]
+==== helloEmp
+....
+OPTIONS /personnel/emp/hello
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_f5bc7b143032cb1fb2f01e9e7a5a5693]]
+=== 员工个人信息
+Emp Basic Controller
+
+
+[[_getallnationsusingget]]
+==== getAllNations
+....
+GET /employee/basic/basicdata
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|object
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_addempusingpost]]
+==== addEmp
+....
+POST /employee/basic/emp
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**address** +
+__optional__|string
+|**Query**|**beginContract** +
+__optional__|string (date-time)
+|**Query**|**beginDate** +
+__optional__|string (date-time)
+|**Query**|**birthday** +
+__optional__|string (date-time)
+|**Query**|**contractTerm** +
+__optional__|number (double)
+|**Query**|**conversionTime** +
+__optional__|string (date-time)
+|**Query**|**department.depPath** +
+__optional__|string
+|**Query**|**department.enabled** +
+__optional__|boolean
+|**Query**|**department.id** +
+__optional__|integer (int64)
+|**Query**|**department.name** +
+__optional__|string
+|**Query**|**department.parent** +
+__optional__|boolean
+|**Query**|**department.parentId** +
+__optional__|integer (int64)
+|**Query**|**department.result** +
+__optional__|integer (int32)
+|**Query**|**departmentId** +
+__optional__|integer (int64)
+|**Query**|**departmentName** +
+__optional__|string
+|**Query**|**email** +
+__optional__|string
+|**Query**|**endContract** +
+__optional__|string (date-time)
+|**Query**|**engageForm** +
+__optional__|string
+|**Query**|**gender** +
+__optional__|string
+|**Query**|**id** +
+__optional__|integer (int64)
+|**Query**|**idCard** +
+__optional__|string
+|**Query**|**jobLevel.createDate.date** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.day** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.hours** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.minutes** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.month** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.nanos** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.seconds** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.time** +
+__optional__|integer (int64)
+|**Query**|**jobLevel.createDate.timezoneOffset** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.year** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.enabled** +
+__optional__|boolean
+|**Query**|**jobLevel.id** +
+__optional__|integer (int64)
+|**Query**|**jobLevel.name** +
+__optional__|string
+|**Query**|**jobLevel.titleLevel** +
+__optional__|string
+|**Query**|**jobLevelId** +
+__optional__|integer (int64)
+|**Query**|**jobLevelName** +
+__optional__|string
+|**Query**|**name** +
+__optional__|string
+|**Query**|**nation.id** +
+__optional__|integer (int64)
+|**Query**|**nation.name** +
+__optional__|string
+|**Query**|**nationId** +
+__optional__|integer (int64)
+|**Query**|**nationName** +
+__optional__|string
+|**Query**|**nativePlace** +
+__optional__|string
+|**Query**|**notWorkDate** +
+__optional__|string (date-time)
+|**Query**|**phone** +
+__optional__|string
+|**Query**|**politicId** +
+__optional__|integer (int64)
+|**Query**|**politicName** +
+__optional__|string
+|**Query**|**politicsStatus.id** +
+__optional__|integer (int64)
+|**Query**|**politicsStatus.name** +
+__optional__|string
+|**Query**|**posId** +
+__optional__|integer (int64)
+|**Query**|**posName** +
+__optional__|string
+|**Query**|**position.createDate.date** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.day** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.hours** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.minutes** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.month** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.nanos** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.seconds** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.time** +
+__optional__|integer (int64)
+|**Query**|**position.createDate.timezoneOffset** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.year** +
+__optional__|integer (int32)
+|**Query**|**position.enabled** +
+__optional__|boolean
+|**Query**|**position.id** +
+__optional__|integer (int64)
+|**Query**|**position.name** +
+__optional__|string
+|**Query**|**salary.accumulationFundBase** +
+__optional__|integer (int32)
+|**Query**|**salary.accumulationFundPer** +
+__optional__|number (float)
+|**Query**|**salary.allSalary** +
+__optional__|integer (int32)
+|**Query**|**salary.basicSalary** +
+__optional__|integer (int32)
+|**Query**|**salary.bonus** +
+__optional__|integer (int32)
+|**Query**|**salary.createDate** +
+__optional__|string (date-time)
+|**Query**|**salary.id** +
+__optional__|integer (int32)
+|**Query**|**salary.lunchSalary** +
+__optional__|integer (int32)
+|**Query**|**salary.medicalBase** +
+__optional__|integer (int32)
+|**Query**|**salary.medicalPer** +
+__optional__|number (float)
+|**Query**|**salary.name** +
+__optional__|string
+|**Query**|**salary.pensionBase** +
+__optional__|integer (int32)
+|**Query**|**salary.pensionPer** +
+__optional__|number (float)
+|**Query**|**salary.trafficSalary** +
+__optional__|integer (int32)
+|**Query**|**school** +
+__optional__|string
+|**Query**|**specialty** +
+__optional__|string
+|**Query**|**tiptopDegree** +
+__optional__|string
+|**Query**|**wedlock** +
+__optional__|string
+|**Query**|**workAge** +
+__optional__|integer (int32)
+|**Query**|**workID** +
+__optional__|string
+|**Query**|**workState** +
+__optional__|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getemployeebypageusingget]]
+==== getEmployeeByPage
+....
+GET /employee/basic/emp
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+|===
+|Type|Name|Description|Schema|Default
+|**Query**|**beginDateScope** +
+__optional__|beginDateScope|string|
+|**Query**|**departmentId** +
+__optional__|departmentId|integer (int64)|
+|**Query**|**engageForm** +
+__optional__|engageForm|string|
+|**Query**|**jobLevelId** +
+__optional__|jobLevelId|integer (int64)|
+|**Query**|**keywords** +
+__optional__|keywords|string|
+|**Query**|**nationId** +
+__optional__|nationId|integer (int64)|
+|**Query**|**page** +
+__optional__|page|integer (int32)|`1`
+|**Query**|**politicId** +
+__optional__|politicId|integer (int64)|
+|**Query**|**posId** +
+__optional__|posId|integer (int64)|
+|**Query**|**size** +
+__optional__|size|integer (int32)|`10`
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|object
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updateempusingput]]
+==== updateEmp
+....
+PUT /employee/basic/emp
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**address** +
+__optional__|string
+|**Query**|**beginContract** +
+__optional__|string (date-time)
+|**Query**|**beginDate** +
+__optional__|string (date-time)
+|**Query**|**birthday** +
+__optional__|string (date-time)
+|**Query**|**contractTerm** +
+__optional__|number (double)
+|**Query**|**conversionTime** +
+__optional__|string (date-time)
+|**Query**|**department.depPath** +
+__optional__|string
+|**Query**|**department.enabled** +
+__optional__|boolean
+|**Query**|**department.id** +
+__optional__|integer (int64)
+|**Query**|**department.name** +
+__optional__|string
+|**Query**|**department.parent** +
+__optional__|boolean
+|**Query**|**department.parentId** +
+__optional__|integer (int64)
+|**Query**|**department.result** +
+__optional__|integer (int32)
+|**Query**|**departmentId** +
+__optional__|integer (int64)
+|**Query**|**departmentName** +
+__optional__|string
+|**Query**|**email** +
+__optional__|string
+|**Query**|**endContract** +
+__optional__|string (date-time)
+|**Query**|**engageForm** +
+__optional__|string
+|**Query**|**gender** +
+__optional__|string
+|**Query**|**id** +
+__optional__|integer (int64)
+|**Query**|**idCard** +
+__optional__|string
+|**Query**|**jobLevel.createDate.date** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.day** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.hours** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.minutes** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.month** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.nanos** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.seconds** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.time** +
+__optional__|integer (int64)
+|**Query**|**jobLevel.createDate.timezoneOffset** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.createDate.year** +
+__optional__|integer (int32)
+|**Query**|**jobLevel.enabled** +
+__optional__|boolean
+|**Query**|**jobLevel.id** +
+__optional__|integer (int64)
+|**Query**|**jobLevel.name** +
+__optional__|string
+|**Query**|**jobLevel.titleLevel** +
+__optional__|string
+|**Query**|**jobLevelId** +
+__optional__|integer (int64)
+|**Query**|**jobLevelName** +
+__optional__|string
+|**Query**|**name** +
+__optional__|string
+|**Query**|**nation.id** +
+__optional__|integer (int64)
+|**Query**|**nation.name** +
+__optional__|string
+|**Query**|**nationId** +
+__optional__|integer (int64)
+|**Query**|**nationName** +
+__optional__|string
+|**Query**|**nativePlace** +
+__optional__|string
+|**Query**|**notWorkDate** +
+__optional__|string (date-time)
+|**Query**|**phone** +
+__optional__|string
+|**Query**|**politicId** +
+__optional__|integer (int64)
+|**Query**|**politicName** +
+__optional__|string
+|**Query**|**politicsStatus.id** +
+__optional__|integer (int64)
+|**Query**|**politicsStatus.name** +
+__optional__|string
+|**Query**|**posId** +
+__optional__|integer (int64)
+|**Query**|**posName** +
+__optional__|string
+|**Query**|**position.createDate.date** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.day** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.hours** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.minutes** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.month** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.nanos** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.seconds** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.time** +
+__optional__|integer (int64)
+|**Query**|**position.createDate.timezoneOffset** +
+__optional__|integer (int32)
+|**Query**|**position.createDate.year** +
+__optional__|integer (int32)
+|**Query**|**position.enabled** +
+__optional__|boolean
+|**Query**|**position.id** +
+__optional__|integer (int64)
+|**Query**|**position.name** +
+__optional__|string
+|**Query**|**salary.accumulationFundBase** +
+__optional__|integer (int32)
+|**Query**|**salary.accumulationFundPer** +
+__optional__|number (float)
+|**Query**|**salary.allSalary** +
+__optional__|integer (int32)
+|**Query**|**salary.basicSalary** +
+__optional__|integer (int32)
+|**Query**|**salary.bonus** +
+__optional__|integer (int32)
+|**Query**|**salary.createDate** +
+__optional__|string (date-time)
+|**Query**|**salary.id** +
+__optional__|integer (int32)
+|**Query**|**salary.lunchSalary** +
+__optional__|integer (int32)
+|**Query**|**salary.medicalBase** +
+__optional__|integer (int32)
+|**Query**|**salary.medicalPer** +
+__optional__|number (float)
+|**Query**|**salary.name** +
+__optional__|string
+|**Query**|**salary.pensionBase** +
+__optional__|integer (int32)
+|**Query**|**salary.pensionPer** +
+__optional__|number (float)
+|**Query**|**salary.trafficSalary** +
+__optional__|integer (int32)
+|**Query**|**school** +
+__optional__|string
+|**Query**|**specialty** +
+__optional__|string
+|**Query**|**tiptopDegree** +
+__optional__|string
+|**Query**|**wedlock** +
+__optional__|string
+|**Query**|**workAge** +
+__optional__|integer (int32)
+|**Query**|**workID** +
+__optional__|string
+|**Query**|**workState** +
+__optional__|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteempbyidusingdelete]]
+==== deleteEmpById
+....
+DELETE /employee/basic/emp/{ids}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**ids** +
+__required__|ids|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_exportempusingget]]
+==== exportEmp
+....
+GET /employee/basic/exportEmp
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string (byte)
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_importempusingpost]]
+==== importEmp
+....
+POST /employee/basic/importEmp
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**FormData**|**file** +
+__optional__|file|file
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `multipart/form-data`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_maxworkidusingpost]]
+==== maxWorkID
+....
+POST /employee/basic/maxWorkID
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_maxworkidusingget]]
+==== maxWorkID
+....
+GET /employee/basic/maxWorkID
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_maxworkidusingput]]
+==== maxWorkID
+....
+PUT /employee/basic/maxWorkID
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_maxworkidusingdelete]]
+==== maxWorkID
+....
+DELETE /employee/basic/maxWorkID
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_maxworkidusingpatch]]
+==== maxWorkID
+....
+PATCH /employee/basic/maxWorkID
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_maxworkidusinghead]]
+==== maxWorkID
+....
+HEAD /employee/basic/maxWorkID
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_maxworkidusingoptions]]
+==== maxWorkID
+....
+OPTIONS /employee/basic/maxWorkID
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_30d946ebd210dfec83548c2c7ad08fef]]
+=== 员工账套
+Salary Emp Controller
+
+
+[[_updateempsalaryusingput]]
+==== 修改
+....
+PUT /salary/sobcfg/
+....
+
+
+===== Description
+修改
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**eid** +
+__optional__|eid|integer (int64)
+|**Query**|**sid** +
+__optional__|sid|integer (int32)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getemployeebypageusingget_1]]
+==== 分页
+....
+GET /salary/sobcfg/emp
+....
+
+
+===== Description
+分页
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+|===
+|Type|Name|Description|Schema|Default
+|**Query**|**page** +
+__optional__|page|integer (int32)|`1`
+|**Query**|**size** +
+__optional__|size|integer (int32)|`10`
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|object
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getpageusingget]]
+==== getPage
+....
+GET /salary/sobcfg/page
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+|===
+|Type|Name|Description|Schema|Default
+|**Query**|**page** +
+__optional__|page|integer (int32)|`1`
+|**Query**|**size** +
+__optional__|size|integer (int32)|`10`
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|object
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_salariesusingget_1]]
+==== 查看
+....
+GET /salary/sobcfg/salaries
+....
+
+
+===== Description
+查看
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_salarybean,SalaryBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_d6d721e531839bd4a142366f825a89e0]]
+=== 基本信息设置
+System Basic Controller
+
+
+[[_addnewroleusingpost]]
+==== 添加角色
+....
+POST /system/basic/addRole
+....
+
+
+===== Description
+添加角色
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**role** +
+__optional__|role|string
+|**Query**|**roleZh** +
+__optional__|roleZh|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getdepbypidusingget]]
+==== 根据id查询department
+....
+GET /system/basic/dep/{pid}
+....
+
+
+===== Description
+根据id查询department
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**pid** +
+__required__|pid|integer (int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_departmentbean,DepartmentBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getalldepsusingget_2]]
+==== 获得departments
+....
+GET /system/basic/deps
+....
+
+
+===== Description
+获得departments
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_departmentbean,DepartmentBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_addjoblevelusingpost]]
+==== 添加joblevel
+....
+POST /system/basic/joblevel
+....
+
+
+===== Description
+添加joblevel
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**createDate.date** +
+__optional__|integer (int32)
+|**Query**|**createDate.day** +
+__optional__|integer (int32)
+|**Query**|**createDate.hours** +
+__optional__|integer (int32)
+|**Query**|**createDate.minutes** +
+__optional__|integer (int32)
+|**Query**|**createDate.month** +
+__optional__|integer (int32)
+|**Query**|**createDate.nanos** +
+__optional__|integer (int32)
+|**Query**|**createDate.seconds** +
+__optional__|integer (int32)
+|**Query**|**createDate.time** +
+__optional__|integer (int64)
+|**Query**|**createDate.timezoneOffset** +
+__optional__|integer (int32)
+|**Query**|**createDate.year** +
+__optional__|integer (int32)
+|**Query**|**enabled** +
+__optional__|boolean
+|**Query**|**id** +
+__optional__|integer (int64)
+|**Query**|**name** +
+__optional__|string
+|**Query**|**titleLevel** +
+__optional__|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updatejoblevelusingput]]
+==== 更新jobLevel
+....
+PUT /system/basic/joblevel
+....
+
+
+===== Description
+更新jobLevel
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**createDate.date** +
+__optional__|integer (int32)
+|**Query**|**createDate.day** +
+__optional__|integer (int32)
+|**Query**|**createDate.hours** +
+__optional__|integer (int32)
+|**Query**|**createDate.minutes** +
+__optional__|integer (int32)
+|**Query**|**createDate.month** +
+__optional__|integer (int32)
+|**Query**|**createDate.nanos** +
+__optional__|integer (int32)
+|**Query**|**createDate.seconds** +
+__optional__|integer (int32)
+|**Query**|**createDate.time** +
+__optional__|integer (int64)
+|**Query**|**createDate.timezoneOffset** +
+__optional__|integer (int32)
+|**Query**|**createDate.year** +
+__optional__|integer (int32)
+|**Query**|**enabled** +
+__optional__|boolean
+|**Query**|**id** +
+__optional__|integer (int64)
+|**Query**|**name** +
+__optional__|string
+|**Query**|**titleLevel** +
+__optional__|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deletejoblevelbyidusingdelete]]
+==== 删除joblevel
+....
+DELETE /system/basic/joblevel/{ids}
+....
+
+
+===== Description
+删除joblevel
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**ids** +
+__required__|ids|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getalljoblevelsusingget]]
+==== 获取所有joblevels
+....
+GET /system/basic/joblevels
+....
+
+
+===== Description
+获取所有joblevels
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_joblevelbean,JobLevelBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_menutreeusingget]]
+==== 获取menuTree
+....
+GET /system/basic/menuTree/{rid}
+....
+
+
+===== Description
+获取menuTree
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**rid** +
+__required__|rid|integer (int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|object
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_addposusingpost]]
+==== 添加position
+....
+POST /system/basic/position
+....
+
+
+===== Description
+添加position
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**createDate.date** +
+__optional__|integer (int32)
+|**Query**|**createDate.day** +
+__optional__|integer (int32)
+|**Query**|**createDate.hours** +
+__optional__|integer (int32)
+|**Query**|**createDate.minutes** +
+__optional__|integer (int32)
+|**Query**|**createDate.month** +
+__optional__|integer (int32)
+|**Query**|**createDate.nanos** +
+__optional__|integer (int32)
+|**Query**|**createDate.seconds** +
+__optional__|integer (int32)
+|**Query**|**createDate.time** +
+__optional__|integer (int64)
+|**Query**|**createDate.timezoneOffset** +
+__optional__|integer (int32)
+|**Query**|**createDate.year** +
+__optional__|integer (int32)
+|**Query**|**enabled** +
+__optional__|boolean
+|**Query**|**id** +
+__optional__|integer (int64)
+|**Query**|**name** +
+__optional__|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updateposbyidusingput]]
+==== 修改position
+....
+PUT /system/basic/position
+....
+
+
+===== Description
+修改position
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**createDate.date** +
+__optional__|integer (int32)
+|**Query**|**createDate.day** +
+__optional__|integer (int32)
+|**Query**|**createDate.hours** +
+__optional__|integer (int32)
+|**Query**|**createDate.minutes** +
+__optional__|integer (int32)
+|**Query**|**createDate.month** +
+__optional__|integer (int32)
+|**Query**|**createDate.nanos** +
+__optional__|integer (int32)
+|**Query**|**createDate.seconds** +
+__optional__|integer (int32)
+|**Query**|**createDate.time** +
+__optional__|integer (int64)
+|**Query**|**createDate.timezoneOffset** +
+__optional__|integer (int32)
+|**Query**|**createDate.year** +
+__optional__|integer (int32)
+|**Query**|**enabled** +
+__optional__|boolean
+|**Query**|**id** +
+__optional__|integer (int64)
+|**Query**|**name** +
+__optional__|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteposbyidusingpost]]
+==== 删除修改positions
+....
+POST /system/basic/position/{pids}
+....
+
+
+===== Description
+删除修改positions
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**pids** +
+__required__|pids|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteposbyidusingget]]
+==== 删除修改positions
+....
+GET /system/basic/position/{pids}
+....
+
+
+===== Description
+删除修改positions
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**pids** +
+__required__|pids|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteposbyidusingput]]
+==== 删除修改positions
+....
+PUT /system/basic/position/{pids}
+....
+
+
+===== Description
+删除修改positions
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**pids** +
+__required__|pids|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteposbyidusingdelete]]
+==== 删除修改positions
+....
+DELETE /system/basic/position/{pids}
+....
+
+
+===== Description
+删除修改positions
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**pids** +
+__required__|pids|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteposbyidusingpatch]]
+==== 删除修改positions
+....
+PATCH /system/basic/position/{pids}
+....
+
+
+===== Description
+删除修改positions
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**pids** +
+__required__|pids|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteposbyidusinghead]]
+==== 删除修改positions
+....
+HEAD /system/basic/position/{pids}
+....
+
+
+===== Description
+删除修改positions
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**pids** +
+__required__|pids|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteposbyidusingoptions]]
+==== 删除修改positions
+....
+OPTIONS /system/basic/position/{pids}
+....
+
+
+===== Description
+删除修改positions
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**pids** +
+__required__|pids|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getallposusingget]]
+==== 列出positions
+....
+GET /system/basic/positions
+....
+
+
+===== Description
+列出positions
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_positionbean,PositionBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteroleusingdelete]]
+==== 根据id删除角色
+....
+DELETE /system/basic/role/{rid}
+....
+
+
+===== Description
+根据id删除角色
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**rid** +
+__required__|rid|integer (int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_allrolesusingpost]]
+==== 列出roles
+....
+POST /system/basic/roles
+....
+
+
+===== Description
+列出roles
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_rolebean,RoleBean>> > array
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_allrolesusingget]]
+==== 列出roles
+....
+GET /system/basic/roles
+....
+
+
+===== Description
+列出roles
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_rolebean,RoleBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_allrolesusingput]]
+==== 列出roles
+....
+PUT /system/basic/roles
+....
+
+
+===== Description
+列出roles
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_rolebean,RoleBean>> > array
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_allrolesusingdelete]]
+==== 列出roles
+....
+DELETE /system/basic/roles
+....
+
+
+===== Description
+列出roles
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_rolebean,RoleBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_allrolesusingpatch]]
+==== 列出roles
+....
+PATCH /system/basic/roles
+....
+
+
+===== Description
+列出roles
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_rolebean,RoleBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_allrolesusinghead]]
+==== 列出roles
+....
+HEAD /system/basic/roles
+....
+
+
+===== Description
+列出roles
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_rolebean,RoleBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_allrolesusingoptions]]
+==== 列出roles
+....
+OPTIONS /system/basic/roles
+....
+
+
+===== Description
+列出roles
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_rolebean,RoleBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updatemenuroleusingput]]
+==== 更新MenuRole
+....
+PUT /system/basic/updateMenuRole
+....
+
+
+===== Description
+更新MenuRole
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**mids** +
+__optional__|mids|< integer (int64) > array(multi)
+|**Query**|**rid** +
+__optional__|rid|integer (int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_903aa3c38de7644dab8993e156ce9242]]
+=== 工资账套配置
+Salary Controller
+
+
+[[_addsalarycfgusingpost]]
+==== 添加账套信息
+....
+POST /salary/sob/salary
+....
+
+
+===== Description
+添加账套信息
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**accumulationFundBase** +
+__optional__|integer (int32)
+|**Query**|**accumulationFundPer** +
+__optional__|number (float)
+|**Query**|**allSalary** +
+__optional__|integer (int32)
+|**Query**|**basicSalary** +
+__optional__|integer (int32)
+|**Query**|**bonus** +
+__optional__|integer (int32)
+|**Query**|**createDate** +
+__optional__|string (date-time)
+|**Query**|**id** +
+__optional__|integer (int32)
+|**Query**|**lunchSalary** +
+__optional__|integer (int32)
+|**Query**|**medicalBase** +
+__optional__|integer (int32)
+|**Query**|**medicalPer** +
+__optional__|number (float)
+|**Query**|**name** +
+__optional__|string
+|**Query**|**pensionBase** +
+__optional__|integer (int32)
+|**Query**|**pensionPer** +
+__optional__|number (float)
+|**Query**|**trafficSalary** +
+__optional__|integer (int32)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_salariesusingget]]
+==== 获取全部信息
+....
+GET /salary/sob/salary
+....
+
+
+===== Description
+获取全部信息
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_salarybean,SalaryBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updatesalaryusingput]]
+==== 更新工资账套
+....
+PUT /salary/sob/salary
+....
+
+
+===== Description
+更新工资账套
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**accumulationFundBase** +
+__optional__|integer (int32)
+|**Query**|**accumulationFundPer** +
+__optional__|number (float)
+|**Query**|**allSalary** +
+__optional__|integer (int32)
+|**Query**|**basicSalary** +
+__optional__|integer (int32)
+|**Query**|**bonus** +
+__optional__|integer (int32)
+|**Query**|**createDate** +
+__optional__|string (date-time)
+|**Query**|**id** +
+__optional__|integer (int32)
+|**Query**|**lunchSalary** +
+__optional__|integer (int32)
+|**Query**|**medicalBase** +
+__optional__|integer (int32)
+|**Query**|**medicalPer** +
+__optional__|number (float)
+|**Query**|**name** +
+__optional__|string
+|**Query**|**pensionBase** +
+__optional__|integer (int32)
+|**Query**|**pensionPer** +
+__optional__|number (float)
+|**Query**|**trafficSalary** +
+__optional__|integer (int32)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deletesalaryusingdelete]]
+==== 删除工资账套
+....
+DELETE /salary/sob/salary/{ids}
+....
+
+
+===== Description
+删除工资账套
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**ids** +
+__required__|ids|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_f2528da18ac2c3aa3f6682192aa60fdb]]
+=== 应聘个人信息
+Info Table Controller
+
+
+[[_getalldepsusingget]]
+==== getAllDeps
+....
+GET /jobInfo/basic/AllDeps
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_departmentbean,DepartmentBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deletejobbasicbyidusingdelete]]
+==== deleteJobBasicById
+....
+DELETE /jobInfo/basic/delete/{ids}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**ids** +
+__required__|ids|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getinsertusingpost]]
+==== getInsert
+....
+POST /jobInfo/basic/insert
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**age** +
+__optional__|integer (int32)
+|**Query**|**departmentBean.depPath** +
+__optional__|string
+|**Query**|**departmentBean.enabled** +
+__optional__|boolean
+|**Query**|**departmentBean.id** +
+__optional__|integer (int64)
+|**Query**|**departmentBean.name** +
+__optional__|string
+|**Query**|**departmentBean.parent** +
+__optional__|boolean
+|**Query**|**departmentBean.parentId** +
+__optional__|integer (int64)
+|**Query**|**departmentBean.result** +
+__optional__|integer (int32)
+|**Query**|**did** +
+__optional__|integer (int32)
+|**Query**|**gender** +
+__optional__|string
+|**Query**|**id** +
+__optional__|integer (int32)
+|**Query**|**interviewDate** +
+__optional__|string (date-time)
+|**Query**|**name** +
+__optional__|string
+|**Query**|**phone** +
+__optional__|string
+|**Query**|**sparePhone** +
+__optional__|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getemployeebypageshortusingget]]
+==== getEmployeeByPageShort
+....
+GET /jobInfo/basic/jobBasicPage
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+|===
+|Type|Name|Description|Schema|Default
+|**Query**|**page** +
+__optional__|page|integer (int32)|`1`
+|**Query**|**size** +
+__optional__|size|integer (int32)|`10`
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|object
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updatejobbasicusingpost]]
+==== updateJobBasic
+....
+POST /jobInfo/basic/update
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**age** +
+__optional__|integer (int32)
+|**Query**|**departmentBean.depPath** +
+__optional__|string
+|**Query**|**departmentBean.enabled** +
+__optional__|boolean
+|**Query**|**departmentBean.id** +
+__optional__|integer (int64)
+|**Query**|**departmentBean.name** +
+__optional__|string
+|**Query**|**departmentBean.parent** +
+__optional__|boolean
+|**Query**|**departmentBean.parentId** +
+__optional__|integer (int64)
+|**Query**|**departmentBean.result** +
+__optional__|integer (int32)
+|**Query**|**did** +
+__optional__|integer (int32)
+|**Query**|**gender** +
+__optional__|string
+|**Query**|**id** +
+__optional__|integer (int32)
+|**Query**|**interviewDate** +
+__optional__|string (date-time)
+|**Query**|**name** +
+__optional__|string
+|**Query**|**phone** +
+__optional__|string
+|**Query**|**sparePhone** +
+__optional__|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_035bdcf832f419afd1df74acb3284555]]
+=== 招聘信息
+Job Info Controller
+
+
+[[_getalldepsusingget_1]]
+==== getAllDeps
+....
+GET /jobInfo/info/AllDeps
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_departmentbean,DepartmentBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_addjobinfousingpost]]
+==== addJobInfo
+....
+POST /jobInfo/info/add
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**createDate** +
+__optional__|string (date-time)
+|**Query**|**departmentBean.depPath** +
+__optional__|string
+|**Query**|**departmentBean.enabled** +
+__optional__|boolean
+|**Query**|**departmentBean.id** +
+__optional__|integer (int64)
+|**Query**|**departmentBean.name** +
+__optional__|string
+|**Query**|**departmentBean.parent** +
+__optional__|boolean
+|**Query**|**departmentBean.parentId** +
+__optional__|integer (int64)
+|**Query**|**departmentBean.result** +
+__optional__|integer (int32)
+|**Query**|**did** +
+__optional__|integer (int32)
+|**Query**|**id** +
+__optional__|integer (int32)
+|**Query**|**info** +
+__optional__|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deletejobinfobyidusingdelete]]
+==== deleteJobInfoById
+....
+DELETE /jobInfo/info/delete/{ids}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**ids** +
+__required__|ids|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getemployeebypageshortusingget_1]]
+==== getEmployeeByPageShort
+....
+GET /jobInfo/info/jobInfoPage
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+|===
+|Type|Name|Description|Schema|Default
+|**Query**|**page** +
+__optional__|page|integer (int32)|`1`
+|**Query**|**size** +
+__optional__|size|integer (int32)|`10`
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|object
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getjobbasicusingget]]
+==== getJobBasic
+....
+GET /jobInfo/info/select/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer (int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_jobinfobean,JobInfoBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updatejobinfousingput]]
+==== updateJobInfo
+....
+PUT /jobInfo/info/update
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**createDate** +
+__optional__|string (date-time)
+|**Query**|**departmentBean.depPath** +
+__optional__|string
+|**Query**|**departmentBean.enabled** +
+__optional__|boolean
+|**Query**|**departmentBean.id** +
+__optional__|integer (int64)
+|**Query**|**departmentBean.name** +
+__optional__|string
+|**Query**|**departmentBean.parent** +
+__optional__|boolean
+|**Query**|**departmentBean.parentId** +
+__optional__|integer (int64)
+|**Query**|**departmentBean.result** +
+__optional__|integer (int32)
+|**Query**|**did** +
+__optional__|integer (int32)
+|**Query**|**id** +
+__optional__|integer (int32)
+|**Query**|**info** +
+__optional__|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_92c3bfcf558f87811cb94a4ee7b541f4]]
+=== 操作员管理
+System Hr Controller
+
+
+[[_selectnameworkusingget]]
+==== selectNameWork
+....
+GET /system/hr/Verb
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**name** +
+__optional__|name|string
+|**Query**|**workID** +
+__optional__|workID|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getmemberusingpost]]
+==== getMember
+....
+POST /system/hr/getMember
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_employeebean,EmployeeBean>> > array
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hrregusingpost]]
+==== hrReg
+....
+POST /system/hr/hr/reg
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**password** +
+__optional__|password|string
+|**Query**|**username** +
+__optional__|username|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrbyidusingpost]]
+==== getHrById
+....
+POST /system/hr/id/{hrId}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**hrId** +
+__required__|hrId|integer (int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrbyidusingget]]
+==== getHrById
+....
+GET /system/hr/id/{hrId}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**hrId** +
+__required__|hrId|integer (int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrbyidusingput]]
+==== getHrById
+....
+PUT /system/hr/id/{hrId}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**hrId** +
+__required__|hrId|integer (int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrbyidusingdelete]]
+==== getHrById
+....
+DELETE /system/hr/id/{hrId}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**hrId** +
+__required__|hrId|integer (int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrbyidusingpatch]]
+==== getHrById
+....
+PATCH /system/hr/id/{hrId}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**hrId** +
+__required__|hrId|integer (int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrbyidusinghead]]
+==== getHrById
+....
+HEAD /system/hr/id/{hrId}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**hrId** +
+__required__|hrId|integer (int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrbyidusingoptions]]
+==== getHrById
+....
+OPTIONS /system/hr/id/{hrId}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**hrId** +
+__required__|hrId|integer (int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrusingpost]]
+==== getHr
+....
+POST /system/hr/insert
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**address** +
+__optional__|address|string
+|**Query**|**name** +
+__optional__|name|string
+|**Query**|**phone** +
+__optional__|phone|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updatehrrolesusingput]]
+==== updateHrRoles
+....
+PUT /system/hr/roles
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**hrId** +
+__optional__|hrId|integer (int64)
+|**Query**|**rids** +
+__optional__|rids|< integer (int64) > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_selectnameusingget]]
+==== selectName
+....
+GET /system/hr/select
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**workID** +
+__optional__|workID|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_employeebean,EmployeeBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updatehrusingput]]
+==== updateHr
+....
+PUT /system/hr/update
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**accountNonExpired** +
+__optional__|boolean
+|**Query**|**accountNonLocked** +
+__optional__|boolean
+|**Query**|**address** +
+__optional__|string
+|**Query**|**authorities[0].authority** +
+__optional__|string
+|**Query**|**credentialsNonExpired** +
+__optional__|boolean
+|**Query**|**enabled** +
+__optional__|boolean
+|**Query**|**id** +
+__optional__|integer (int64)
+|**Query**|**name** +
+__optional__|string
+|**Query**|**password** +
+__optional__|string
+|**Query**|**phone** +
+__optional__|string
+|**Query**|**remark** +
+__optional__|string
+|**Query**|**roles[0].id** +
+__optional__|integer (int64)
+|**Query**|**roles[0].name** +
+__optional__|string
+|**Query**|**roles[0].nameZh** +
+__optional__|string
+|**Query**|**telephone** +
+__optional__|string
+|**Query**|**userface** +
+__optional__|string
+|**Query**|**username** +
+__optional__|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deletehrusingdelete]]
+==== deleteHr
+....
+DELETE /system/hr/{hrId}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**hrId** +
+__required__|hrId|integer (int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrsbykeywordsusingpost]]
+==== getHrsByKeywords
+....
+POST /system/hr/{keywords}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**keywords** +
+__required__|keywords|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_hrbean,HrBean>> > array
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrsbykeywordsusingget]]
+==== getHrsByKeywords
+....
+GET /system/hr/{keywords}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**keywords** +
+__required__|keywords|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_hrbean,HrBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrsbykeywordsusingput]]
+==== getHrsByKeywords
+....
+PUT /system/hr/{keywords}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**keywords** +
+__required__|keywords|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_hrbean,HrBean>> > array
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrsbykeywordsusingdelete]]
+==== getHrsByKeywords
+....
+DELETE /system/hr/{keywords}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**keywords** +
+__required__|keywords|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_hrbean,HrBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrsbykeywordsusingpatch]]
+==== getHrsByKeywords
+....
+PATCH /system/hr/{keywords}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**keywords** +
+__required__|keywords|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_hrbean,HrBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrsbykeywordsusinghead]]
+==== getHrsByKeywords
+....
+HEAD /system/hr/{keywords}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**keywords** +
+__required__|keywords|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_hrbean,HrBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_gethrsbykeywordsusingoptions]]
+==== getHrsByKeywords
+....
+OPTIONS /system/hr/{keywords}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**keywords** +
+__required__|keywords|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_hrbean,HrBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_2c79386e193457ae771f9152cff0cd04]]
+=== 登陆
+Employee Controller
+
+
+[[_hellousingpost]]
+==== hello
+....
+POST /employee/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hellousingget]]
+==== hello
+....
+GET /employee/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hellousingput]]
+==== hello
+....
+PUT /employee/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hellousingdelete]]
+==== hello
+....
+DELETE /employee/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hellousingpatch]]
+==== hello
+....
+PATCH /employee/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hellousinghead]]
+==== hello
+....
+HEAD /employee/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hellousingoptions]]
+==== hello
+....
+OPTIONS /employee/
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_basicusingpost]]
+==== basic
+....
+POST /employee/basic
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_basicusingget]]
+==== basic
+....
+GET /employee/basic
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_basicusingput]]
+==== basic
+....
+PUT /employee/basic
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_basicusingdelete]]
+==== basic
+....
+DELETE /employee/basic
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_basicusingpatch]]
+==== basic
+....
+PATCH /employee/basic
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_basicusinghead]]
+==== basic
+....
+HEAD /employee/basic
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_basicusingoptions]]
+==== basic
+....
+OPTIONS /employee/basic
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_ee222824fd2aacc6d4633aa876de73ff]]
+=== 登陆信息
+Reg Login Controller
+
+
+[[_hellousingget_2]]
+==== 登陆成功信息
+....
+GET /employee/advanced/hello
+....
+
+
+===== Description
+登陆成功信息
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_basichellousingget]]
+==== basicHello
+....
+GET /employee/basic/hello
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_loginusingpost]]
+==== 登陆错误
+....
+POST /login_p
+....
+
+
+===== Description
+登陆错误
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_loginusingget]]
+==== 登陆错误
+....
+GET /login_p
+....
+
+
+===== Description
+登陆错误
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_loginusingput]]
+==== 登陆错误
+....
+PUT /login_p
+....
+
+
+===== Description
+登陆错误
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_loginusingdelete]]
+==== 登陆错误
+....
+DELETE /login_p
+....
+
+
+===== Description
+登陆错误
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_loginusingpatch]]
+==== 登陆错误
+....
+PATCH /login_p
+....
+
+
+===== Description
+登陆错误
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_loginusinghead]]
+==== 登陆错误
+....
+HEAD /login_p
+....
+
+
+===== Description
+登陆错误
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_loginusingoptions]]
+==== 登陆错误
+....
+OPTIONS /login_p
+....
+
+
+===== Description
+登陆错误
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_respbean,RespBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_791a281316b305bf3348b306c7a698a6]]
+=== 获取登陆信息
+Config Controller
+
+
+[[_currentuserusingpost]]
+==== hr认证
+....
+POST /config/hr
+....
+
+
+===== Description
+hr认证
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_currentuserusingget]]
+==== hr认证
+....
+GET /config/hr
+....
+
+
+===== Description
+hr认证
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_currentuserusingput]]
+==== hr认证
+....
+PUT /config/hr
+....
+
+
+===== Description
+hr认证
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_currentuserusingdelete]]
+==== hr认证
+....
+DELETE /config/hr
+....
+
+
+===== Description
+hr认证
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_currentuserusingpatch]]
+==== hr认证
+....
+PATCH /config/hr
+....
+
+
+===== Description
+hr认证
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_currentuserusinghead]]
+==== hr认证
+....
+HEAD /config/hr
+....
+
+
+===== Description
+hr认证
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_currentuserusingoptions]]
+==== hr认证
+....
+OPTIONS /config/hr
+....
+
+
+===== Description
+hr认证
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_hrbean,HrBean>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_sysmenuusingpost]]
+==== 获取列表信息
+....
+POST /config/sysmenu
+....
+
+
+===== Description
+获取列表信息
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_menubean,MenuBean>> > array
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_sysmenuusingget]]
+==== 获取列表信息
+....
+GET /config/sysmenu
+....
+
+
+===== Description
+获取列表信息
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_menubean,MenuBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_sysmenuusingput]]
+==== 获取列表信息
+....
+PUT /config/sysmenu
+....
+
+
+===== Description
+获取列表信息
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_menubean,MenuBean>> > array
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_sysmenuusingdelete]]
+==== 获取列表信息
+....
+DELETE /config/sysmenu
+....
+
+
+===== Description
+获取列表信息
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_menubean,MenuBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_sysmenuusingpatch]]
+==== 获取列表信息
+....
+PATCH /config/sysmenu
+....
+
+
+===== Description
+获取列表信息
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_menubean,MenuBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_sysmenuusinghead]]
+==== 获取列表信息
+....
+HEAD /config/sysmenu
+....
+
+
+===== Description
+获取列表信息
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_menubean,MenuBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_sysmenuusingoptions]]
+==== 获取列表信息
+....
+OPTIONS /config/sysmenu
+....
+
+
+===== Description
+获取列表信息
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_menubean,MenuBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_ec6015c09082b28d31758d3f125156b8]]
+=== 部门
+Salary Table Controller
+
+
+[[_departmentsusingpost]]
+==== 列出所有部门
+....
+POST /salary/table/deps
+....
+
+
+===== Description
+列出所有部门
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_departmentbean,DepartmentBean>> > array
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_departmentsusingget]]
+==== 列出所有部门
+....
+GET /salary/table/deps
+....
+
+
+===== Description
+列出所有部门
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_departmentbean,DepartmentBean>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_departmentsusingput]]
+==== 列出所有部门
+....
+PUT /salary/table/deps
+....
+
+
+===== Description
+列出所有部门
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_departmentbean,DepartmentBean>> > array
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_departmentsusingdelete]]
+==== 列出所有部门
+....
+DELETE /salary/table/deps
+....
+
+
+===== Description
+列出所有部门
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_departmentbean,DepartmentBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_departmentsusingpatch]]
+==== 列出所有部门
+....
+PATCH /salary/table/deps
+....
+
+
+===== Description
+列出所有部门
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_departmentbean,DepartmentBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_departmentsusinghead]]
+==== 列出所有部门
+....
+HEAD /salary/table/deps
+....
+
+
+===== Description
+列出所有部门
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_departmentbean,DepartmentBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_departmentsusingoptions]]
+==== 列出所有部门
+....
+OPTIONS /salary/table/deps
+....
+
+
+===== Description
+列出所有部门
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_departmentbean,DepartmentBean>> > array
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+
+
+[[_definitions]]
+== Definitions
+
+[[_departmentbean]]
+=== DepartmentBean
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**children** +
+__optional__|< <<_departmentbean,DepartmentBean>> > array
+|**enabled** +
+__optional__|boolean
+|**id** +
+__optional__|integer (int64)
+|**name** +
+__optional__|string
+|**parent** +
+__optional__|boolean
+|**parentId** +
+__optional__|integer (int64)
+|===
+
+
+[[_employeebean]]
+=== EmployeeBean
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**address** +
+__optional__|string
+|**beginContract** +
+__optional__|string (date-time)
+|**beginDate** +
+__optional__|string (date-time)
+|**birthday** +
+__optional__|string (date-time)
+|**contractTerm** +
+__optional__|number (double)
+|**conversionTime** +
+__optional__|string (date-time)
+|**department** +
+__optional__|<<_departmentbean,DepartmentBean>>
+|**email** +
+__optional__|string
+|**endContract** +
+__optional__|string (date-time)
+|**engageForm** +
+__optional__|string
+|**gender** +
+__optional__|string
+|**id** +
+__optional__|integer (int64)
+|**idCard** +
+__optional__|string
+|**jobLevel** +
+__optional__|<<_joblevelbean,JobLevelBean>>
+|**name** +
+__optional__|string
+|**nation** +
+__optional__|<<_nationbean,NationBean>>
+|**nativePlace** +
+__optional__|string
+|**notWorkDate** +
+__optional__|string (date-time)
+|**phone** +
+__optional__|string
+|**politicsStatus** +
+__optional__|<<_politicsstatusbean,PoliticsStatusBean>>
+|**posName** +
+__optional__|string
+|**position** +
+__optional__|<<_positionbean,PositionBean>>
+|**salary** +
+__optional__|<<_salarybean,SalaryBean>>
+|**school** +
+__optional__|string
+|**specialty** +
+__optional__|string
+|**tiptopDegree** +
+__optional__|string
+|**wedlock** +
+__optional__|string
+|**workAge** +
+__optional__|integer (int32)
+|**workID** +
+__optional__|string
+|**workState** +
+__optional__|string
+|===
+
+
+[[_hrbean]]
+=== HrBean
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**address** +
+__optional__|string
+|**enabled** +
+__optional__|boolean
+|**id** +
+__optional__|integer (int64)
+|**name** +
+__optional__|string
+|**phone** +
+__optional__|string
+|**remark** +
+__optional__|string
+|**roles** +
+__optional__|< <<_rolebean,RoleBean>> > array
+|**telephone** +
+__optional__|string
+|**userface** +
+__optional__|string
+|**username** +
+__optional__|string
+|===
+
+
+[[_jobinfobean]]
+=== JobInfoBean
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**createDate** +
+__optional__|string (date-time)
+|**departmentBean** +
+__optional__|<<_departmentbean,DepartmentBean>>
+|**did** +
+__optional__|integer (int32)
+|**id** +
+__optional__|integer (int32)
+|**info** +
+__optional__|string
+|===
+
+
+[[_joblevelbean]]
+=== JobLevelBean
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**createDate** +
+__optional__|<<_timestamp,Timestamp>>
+|**enabled** +
+__optional__|boolean
+|**id** +
+__optional__|integer (int64)
+|**name** +
+__optional__|string
+|**titleLevel** +
+__optional__|string
+|===
+
+
+[[_menubean]]
+=== MenuBean
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**children** +
+__optional__|< <<_menubean,MenuBean>> > array
+|**component** +
+__optional__|object
+|**iconCls** +
+__optional__|string
+|**id** +
+__optional__|integer (int64)
+|**meta** +
+__optional__|<<_menumetabean,MenuMetaBean>>
+|**name** +
+__optional__|string
+|**path** +
+__optional__|string
+|===
+
+
+[[_menumetabean]]
+=== MenuMetaBean
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**keepAlive** +
+__optional__|boolean
+|**requireAuth** +
+__optional__|boolean
+|===
+
+
+[[_nationbean]]
+=== NationBean
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**id** +
+__optional__|integer (int64)
+|**name** +
+__optional__|string
+|===
+
+
+[[_politicsstatusbean]]
+=== PoliticsStatusBean
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**id** +
+__optional__|integer (int64)
+|**name** +
+__optional__|string
+|===
+
+
+[[_positionbean]]
+=== PositionBean
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**createDate** +
+__optional__|<<_timestamp,Timestamp>>
+|**enabled** +
+__optional__|boolean
+|**id** +
+__optional__|integer (int64)
+|**name** +
+__optional__|string
+|===
+
+
+[[_respbean]]
+=== RespBean
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**msg** +
+__optional__|string
+|**obj** +
+__optional__|object
+|**status** +
+__optional__|integer (int32)
+|===
+
+
+[[_rolebean]]
+=== RoleBean
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**id** +
+__optional__|integer (int64)
+|**name** +
+__optional__|string
+|**nameZh** +
+__optional__|string
+|===
+
+
+[[_salarybean]]
+=== SalaryBean
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**accumulationFundBase** +
+__optional__|integer (int32)
+|**accumulationFundPer** +
+__optional__|number (float)
+|**allSalary** +
+__optional__|integer (int32)
+|**basicSalary** +
+__optional__|integer (int32)
+|**bonus** +
+__optional__|integer (int32)
+|**createDate** +
+__optional__|string (date-time)
+|**id** +
+__optional__|integer (int32)
+|**lunchSalary** +
+__optional__|integer (int32)
+|**medicalBase** +
+__optional__|integer (int32)
+|**medicalPer** +
+__optional__|number (float)
+|**name** +
+__optional__|string
+|**pensionBase** +
+__optional__|integer (int32)
+|**pensionPer** +
+__optional__|number (float)
+|**trafficSalary** +
+__optional__|integer (int32)
+|===
+
+
+[[_timestamp]]
+=== Timestamp
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**date** +
+__optional__|integer (int32)
+|**day** +
+__optional__|integer (int32)
+|**hours** +
+__optional__|integer (int32)
+|**minutes** +
+__optional__|integer (int32)
+|**month** +
+__optional__|integer (int32)
+|**nanos** +
+__optional__|integer (int32)
+|**seconds** +
+__optional__|integer (int32)
+|**time** +
+__optional__|integer (int64)
+|**timezoneOffset** +
+__optional__|integer (int32)
+|**year** +
+__optional__|integer (int32)
+|===
+
+
+
+
+

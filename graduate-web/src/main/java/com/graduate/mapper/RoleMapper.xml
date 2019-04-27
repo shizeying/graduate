@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduate.mapper.RoleMapper">
+    <select id="roles" resultType="com.graduate.bean.RoleBean">
+        SELECT * FROM role where "id"!=6
+    </select>
+    <insert id="addNewRole">
+        UPSERT into role("id","name","nameZh") values (NEXT VALUE FOR role_sequence,#{role},#{roleZh})
+    </insert>
+    <delete id="deleteRoleById" parameterType="Long">
+        DELETE FROM role WHERE "id"=#{rid}
+    </delete>
+</mapper>

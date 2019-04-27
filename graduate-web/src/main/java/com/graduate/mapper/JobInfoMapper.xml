@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduate.mapper.JobInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.graduate.bean.JobInfoBean">
+        <id column="id" property="id"/>
+        <result column="did" property="did"/>
+        <result column="info" property="info"/>
+        <result column="createDate" property="createDate"/>
+        <association property="departmentBean" javaType="com.graduate.bean.DepartmentBean">
+            <result column="dname" property="name"/>
+            <result column="id" property="id"/>
+        </association>
+    </resultMap>
+
+    <!--
+   **************************************************************************
+   * 1.查看招聘信息
+   * 注: 根据Bean实体执行新增操作.
+   **************************************************************************
+   -->
+    <select id="getJobInfoByPageShort" resultMap="BaseResultMap">
+            SELECT  j."id" as "id", j."info" as "info", j."create_date" as "createDate", d."name" AS "dname"
+            FROM job_info j,department d WHERE   j."did" = d."id" ORDER BY j."id" limit #{size} offset #{start}
+    </select>
+    <select id="getSelect" resultMap="BaseResultMap">
+      SELECT j."info",j."create_date" AS "createDate",d."name" AS "dname" FROM job_info as j,department d WHERE j."did"=d."id" AND j."id"=#{id}
+    </select>
+
+    <!--
+    **************************************************************************
+    * 2.删除数据
+    * 注: 根据Bean实体的主键ID执行删除操作.
+    **************************************************************************
+    -->
+
+    <delete id="deleteJobInfoById">
+        DELETE FROM job_info WHERE "id" IN
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id,jdbcType=INTEGER}
+        </foreach>
+    </delete>
+    <!--
+    **************************************************************************
+    * 3.变更数据
+    * 注: 根据Bean实体的主键ID执行变更操作.
+    **************************************************************************
+    -->
+    <sql id="key">
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                "id",
+            </if>
+            <if test="did != null">
+                "did" ,
+            </if>
+            <if test="info != null">
+                "info",
+            </if>
+            <if test="createDate !=null">
+                "create_date",
+            </if>
+        </trim>
+    </sql>
+    <sql id="values">
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="did != null">
+                #{did,jdbcType=INTEGER},
+            </if>
+            <if test="info != null">
+                #{info,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate !=null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </sql>
+    <update id="updateJobInfo" keyProperty="id">
+        UPSERT into job_info(<include refid="key"/>)
+        values(<include refid="values"/>)
+    </update>
+
+</mapper>
